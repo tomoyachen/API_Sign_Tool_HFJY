@@ -1,0 +1,12 @@
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\bin\Debug\接口参数拼接.exe.config
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\bin\Debug\接口参数拼接.exe
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\bin\Debug\接口参数拼接.pdb
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\obj\Debug\接口参数拼接.Form1.resources
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\obj\Debug\接口参数拼接.Form2.resources
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\obj\Debug\接口参数拼接.Form3.resources
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\obj\Debug\接口参数拼接.Properties.Resources.resources
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\obj\Debug\接口参数拼接.csproj.GenerateResource.Cache
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\obj\Debug\接口参数拼接.csproj.CoreCompileInputs.cache
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\obj\Debug\接口参数拼接.exe
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\obj\Debug\接口参数拼接.pdb
+C:\Users\FCD\source\repos\接口参数拼接\接口参数拼接\obj\Debug\接口参数拼接.csprojResolveAssemblyReference.cache
