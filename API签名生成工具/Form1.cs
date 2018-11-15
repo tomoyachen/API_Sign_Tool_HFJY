@@ -31,9 +31,15 @@ namespace API签名生成工具
             textBox3.Text = "${key}";
             textBox3.Text = GetConfigValue("key_textBox", "");
             checkBox1.CheckState = CheckState.Unchecked;
-            if (GetConfigValue("UrlDecode_checkBox", "false") == "true")
+            
+            if (GetConfigValue("UrlEncode_checkBox", "true") == "true")
             {
                 checkBox1.CheckState = CheckState.Checked;
+            }
+            checkBox2.CheckState = CheckState.Unchecked;
+            if (GetConfigValue("UrlEncodeFun_checkBox", "false") == "true")
+            {
+                checkBox2.CheckState = CheckState.Checked;
             }
             textBox1.Text = "";
             textBox2.Text = "";
@@ -43,7 +49,7 @@ namespace API签名生成工具
         {
             //记录日志
             string log = "";
-            log += "Key值: " + textBox3.Text + ", UrlDecode: " + checkBox1.CheckState.ToString() + "\r\n";
+            log += "Key值: " + textBox3.Text + ", UrlEncode: " + checkBox1.CheckState.ToString() + "\r\n";
             log += "源内容: " + textBox1.Text + "\r\n";
             //--------------------------
 
@@ -101,21 +107,26 @@ namespace API签名生成工具
                 Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
             }
             */
-           
+            Boolean ifEncode = false;
+            Boolean ifJmeterFun = false;
             if (checkBox1.CheckState == CheckState.Checked)
             {
-                textBox2.Text = http_build_query(dict, true) + textBox3.Text;  //urldecode
-            }
-            else {
-                textBox2.Text = http_build_query(dict, false) + textBox3.Text;
+                ifEncode = true;
+            }else if(checkBox2.CheckState == CheckState.Checked)
+            {
+                ifJmeterFun = true;
             }
 
+            textBox2.Text = http_build_query(dict, ifEncode, ifJmeterFun) + textBox3.Text;
 
             //记录日志
             log += "格式化: " + textBox1.Text + "\r\n";
             log += "生成后: " + textBox2.Text;
             //--------------------------
-            new myLog().WriteLog(log);
+            if (GetConfigValue("writeToLog", "true") == "true")
+            {
+                new myLog().WriteLog(log);
+            }
             //--------------------------
 
         }
@@ -189,7 +200,7 @@ namespace API签名生成工具
 
 
         //实现PHP中的http_build_query方法
-        public static string http_build_query(Dictionary<string, string> dict, Boolean ifDecode)
+        public static string http_build_query(Dictionary<string, string> dict, Boolean ifEncode, Boolean ifJmeterFun)
         {
             if (dict == null)
             {
@@ -204,10 +215,14 @@ namespace API签名生成工具
             {
                 
                 string tmp = kvp.Value;
-                if (!ifDecode)
+                if (ifEncode) //自动编码 支持生成MD5
                 {
                     //tmp = HttpUtility.UrlEncode(tmp, System.Text.Encoding.UTF8); //符号不会转义 弃用
                     tmp = UrlEncode(tmp);
+                }
+                if (ifJmeterFun) //加上urlencode函数，用于Jmeter使用
+                {
+                    tmp = "${__urlencode(" + tmp + ")}";
                 }
                 result += (kvp.Key + "=" + tmp + "&");
             }
@@ -215,29 +230,6 @@ namespace API签名生成工具
             return result.Trim('&');
         }
 
-
-        //实现PHP中的http_build_query方法
-        public static string http_build_query2(Dictionary<string, string> dict, Boolean ifDecode)
-        {
-            if (dict == null)
-            {
-                return "字典为空！";
-            }
-            var builder = new UriBuilder();
-            var query = HttpUtility.ParseQueryString(builder.Query);
-            foreach (var item in dict.Keys)
-            {
-                query[item] = dict[item];
-            }
-
-            MessageBox.Show(query.ToString());
-            string result = query.ToString().Trim('?');
-            result = HttpUtility.UrlDecode(result);
-            if (!ifDecode) {
-                result = HttpUtility.UrlEncode(result, System.Text.Encoding.UTF8);
-            }
-            return query.ToString().Trim('?');
-        }
 
         //生成MD5方法
         private static string GetMD5(string myString)
@@ -261,10 +253,12 @@ namespace API签名生成工具
         {
             if (checkBox1.CheckState == CheckState.Checked)
             {
-                button2.Enabled = false;
+                button2.Enabled = true;
+                checkBox2.Enabled = false;
             }
             else {
-                button2.Enabled = true;
+                button2.Enabled = false;
+                checkBox2.Enabled = true;
             }
         }
 
