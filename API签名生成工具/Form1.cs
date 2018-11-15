@@ -41,7 +41,12 @@ namespace API签名生成工具
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            //记录日志
+            string log = "";
+            log += "Key值: " + textBox3.Text + ", UrlDecode: " + checkBox1.CheckState.ToString() + "\r\n";
+            log += "源内容: " + textBox1.Text + "\r\n";
+            //--------------------------
+
             List<string> lis = new List<string>();
             for (int i = 0; i < textBox1.Lines.Length; i++)
             {
@@ -106,13 +111,13 @@ namespace API签名生成工具
             }
 
 
-
             //记录日志
-            string log = "";
-            log += "Key值: " + textBox3.Text + ", UrlDecode: " + checkBox1.CheckState.ToString() + "\r\n";
-            log += "源内容: " + textBox1.Text + "\r\n";
+            log += "格式化: " + textBox1.Text + "\r\n";
             log += "生成后: " + textBox2.Text;
+            //--------------------------
             new myLog().WriteLog(log);
+            //--------------------------
+
         }
 
         private void button2_Click(object sender, EventArgs e)
