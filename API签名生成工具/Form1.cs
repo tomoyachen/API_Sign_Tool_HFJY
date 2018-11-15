@@ -261,5 +261,18 @@ namespace API签名生成工具
                 button2.Enabled = true;
             }
         }
+
+        private void listen_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                //this.Close();
+            }
+        }
+
     }
 }

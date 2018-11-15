@@ -24,14 +24,17 @@ namespace API签名生成工具
             
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void listen_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
 
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

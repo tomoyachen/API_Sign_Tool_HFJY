@@ -54,5 +54,17 @@ namespace API签名生成工具
             System.Diagnostics.Process.Start("explorer.exe", "http://blog.csdn.net/tomoya_chen");
         }
 
+
+        private void listen_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }
