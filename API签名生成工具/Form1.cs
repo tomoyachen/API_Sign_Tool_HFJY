@@ -29,7 +29,7 @@ namespace API签名生成工具
 
         private void init() {
             textBox3.Text = "${key}";
-            textBox3.Text = GetConfigValue("key_textBox", "${key}");
+            textBox3.Text = GetConfigValue("key_textBox", "");
             checkBox1.CheckState = CheckState.Unchecked;
             if (GetConfigValue("UrlDecode_checkBox", "false") == "true")
             {
@@ -47,6 +47,7 @@ namespace API签名生成工具
             {
                 string line = textBox1.Lines[i].ToString().Trim();//清除左右所有空格
                 line = line.Replace("\'", "").Replace("\"", ""); //去掉引号
+                line = line.Trim(',');//清除左右两边的逗号
                 line = line.Replace(" => ", "\t").Replace(" =>", "\t").Replace("=> ", "\t").Replace("=>", "\t"); //兼容php语言
                 if (line.Length != 0)//非空行才写入数组
                 { 
