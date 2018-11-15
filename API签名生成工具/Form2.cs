@@ -25,11 +25,11 @@ namespace API签名生成工具
         {
             String help = null;
             help += @"使用方式：" + "\r\n";
-            help += @"1.本工具用于生成sign参数的明文和密文" + "\r\n";
-            help += @"2.将API请求中的表单内容复制到上文本框" + "\r\n";
-            help += @"3.点击[生成]按钮" + "\r\n";
-            help += @"4.也可以直接在工具内进行MD5加密" + "\r\n";
-            help += @"*.工具默认值可通过config文件配置";
+            help += @"1.本工具用于生成sign参数" + "\r\n";
+            help += @"2.也可以对sign明文进行md5加密" + "\r\n";
+            help += "\r\n备注: \r\n";
+            help += @"config文件可以配置默认参数" + "\r\n";
+            help += @"原内容中 => \t : , = 会被转义";
             textBox1.Text = help;
 
             String author = null;
