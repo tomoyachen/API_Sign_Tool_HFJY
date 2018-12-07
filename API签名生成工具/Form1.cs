@@ -22,7 +22,6 @@ namespace API签名生成工具
             StartPosition = FormStartPosition.CenterScreen;
             this.Text = "API签名生成工具";
             init();
-
         }
 
 
@@ -234,20 +233,21 @@ namespace API签名生成工具
         //生成MD5方法
         private static string GetMD5(string myString)
         {
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] fromData = System.Text.Encoding.UTF8.GetBytes(myString);
+            MD5 md5 = new MD5CryptoServiceProvider(); //实例化一个md5对像
+            byte[] fromData = System.Text.Encoding.UTF8.GetBytes(myString); //加密后是一个字节类型的数组，这里要注意编码UTF8/Unicode等的选择　
             byte[] targetData = md5.ComputeHash(fromData);
             string byte2String = null;
 
-            for (int i = 0; i < targetData.Length; i++)
+            for (int i = 0; i < targetData.Length; i++) //通过使用循环，将字节类型的数组转换为字符串，此字符串是常规字符格式化所得
             {
-                byte2String += targetData[i].ToString("x");
+                byte2String += targetData[i].ToString("x2"); // 将得到的字符串使用十六进制类型格式。X 表示大写， x 表示小写， X2和x2表示不省略首位为0的十六进制数字。
             }
 
             return byte2String;
 
 
         }
+
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
