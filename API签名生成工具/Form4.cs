@@ -21,7 +21,8 @@ namespace API签名生成工具
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            
+            this.MaximizeBox = false; //使最大化窗口失效
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle; //下一句用来禁止对窗口大小进行拖拽
         }
 
         private void listen_KeyDown(object sender, KeyEventArgs e)
