@@ -122,7 +122,7 @@ namespace API签名生成工具
             log += "格式化: " + textBox1.Text + "\r\n";
             log += "生成后: " + textBox2.Text;
             //--------------------------
-            if (GetConfigValue("writeToLog", "true") == "true")
+            if (GetConfigValue("writeToLog", "false") == "true")
             {
                 new myLog().WriteLog(log);
             }
